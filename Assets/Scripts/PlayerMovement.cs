@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int PV = 3;
+
+    public GameObject key;
+    public GameObject coffre;
+
     public float moveSpeed;
     public Rigidbody2D rb;
     public Animator animator;
@@ -23,5 +28,19 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.tag == "boule")
+        {
+            PV = PV - 1;
+            Debug.Log(PV);
+        }
+        if (collider.tag == "coffre")
+        {
+            key.SetActive(true);
+            coffre.SetActive(false);
+        }
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SideMovement : MonoBehaviour
 {
+
+    public GameObject boutonBleu;
+    public GameObject porteBleu;
+
     public float moveSpeed;
     public Rigidbody2D rb;
     public Animator animator;
@@ -23,5 +27,11 @@ public class SideMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        boutonBleu.SetActive(false);
+        porteBleu.SetActive(false);
     }
 }
